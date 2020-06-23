@@ -1,14 +1,11 @@
 const fetch = require("node-fetch");
-let url = "https://api.github.com/users/MozLNMIIT/repos";
+const BASEURL = "https://api.github.com";
+const url = BASEURL + "/repos/wataryooou/pull_request/pulls?state=all";
 
-async function github(repo) {
-    let response = await fetch(url);
-    let result = response.json();
-    for (let i = 0; i < result.length; i++) {
-        if (repo == result[i].name) {
-            console.log(result[i].name);
-        }
-    }
+function getPullRequests() {
+    fetch(url)
+        .then(data => data.json())
+        .then(data => {
+            console.log(data);
+        });
 }
-
-console.log(github("Hacktoberfest-2019"));
